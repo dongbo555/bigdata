@@ -1,0 +1,54 @@
+//- Homepage Markup
+extends ./layouts/base
+
+block content
+  .navbar.navbar-default(role='navigation')
+    .row
+      // .navbar-inner
+      //   button.navbar-toggle.pull-left.animated.flip(type='button')
+      //     span.sr-only Toggle navigation
+      //     span.icon-bar
+      //     span.icon-bar
+      //     span.icon-bar
+      .col-sm-2.col-sm-offset-5
+        a.navbar-brand.center-block(href='index.html')
+          span 大数据处理
+  .ch-container
+    .row
+      // left menu starts
+      .col-sm-2.col-lg-2
+        .sidebar-nav
+          .nav-canvas
+            ul.nav.nav-pills.nav-stacked.main-menu
+              li.nav-header.hidden-md 选择算法
+              li.active
+                a.ajax-link(href='#sf1',data-toggle="tab")
+                  i.glyphicon.glyphicon-align-justify
+                  span  算法1
+              li.accordion
+                a(href='javascript:void(0)')
+                  i.glyphicon.glyphicon-plus
+                  span  算法2
+                ul.nav.nav-pills.nav-stacked
+                  li
+                    a(href='#sf2',data-toggle="tab") 算法1
+                  li
+                    a(href='#sf3',data-toggle="tab") 算法2
+              li
+                a.ajax-link(href='#sf4',data-toggle="tab")
+                  i.glyphicon.glyphicon-calendar
+                  span  算法3           
+      .col-sm-4
+        input#loadfile.file.form-control(type='file',data-preview-file-type='text')
+      .col-sm-2
+        button.btn.btn-primary(type='button')  calculate
+      hr.col-sm-9
+      .tab-content.col-sm-10
+        #sf1.tab-pane.in.active
+          h2 test   
+        #sf2.tab-pane
+          h2 test1         
+        #sf3.tab-pane
+          h2 test3
+        #sf4.tab-pane
+          h2 test4   
