@@ -13,7 +13,9 @@
   width: 183px;
   font-size: 17px;
 }
-
+.line {
+  margin-left: 20px;
+}
 .navbar-brand img {
   float: left;
   height: 20px;
