@@ -40,6 +40,9 @@ var taskConfig = function(grunt) {
       files: {
         '<%= yeogurt.server %>/templates/layouts/base.jade': [
           '<%= yeogurt.client %>/scripts/**/*.js',
+          '!<%= yeogurt.client %>/scripts/movie_network.js',
+          '!<%= yeogurt.client %>/scripts/user_info.js',
+          '!<%= yeogurt.client %>/scripts/user_network.js',
           '!<%= yeogurt.client %>/scripts/main.js'
         ]
       }

@@ -21,34 +21,52 @@ block content
           .nav-canvas
             ul.nav.nav-pills.nav-stacked.main-menu
               li.nav-header.hidden-md 选择算法
-              li.active
-                a.ajax-link(href='#sf1',data-toggle="tab")
-                  i.glyphicon.glyphicon-align-justify
-                  span  算法1
-              li.accordion
-                a(href='javascript:void(0)')
-                  i.glyphicon.glyphicon-plus
-                  span  算法2
-                ul.nav.nav-pills.nav-stacked
-                  li
-                    a(href='#sf2',data-toggle="tab") 算法1
-                  li
-                    a(href='#sf3',data-toggle="tab") 算法2
+              li
+                a.ajax-link#sli1(href='#sf1',data-toggle="tab")
+                  //i.glyphicon.glyphicon-align-justify
+                  span  &nbsp Slope one
+              li
+                a.ajax-link#sli2(href='#sf1',data-toggle="tab")
+                  //i.glyphicon.glyphicon-align-justify
+                  span  &nbsp KNN
+              li
+                a.ajax-link#sli3(href='#sf1',data-toggle="tab")
+                  //i.glyphicon.glyphicon-align-justify
+                  span  &nbsp SVD        
+
+              li.nav-header.hidden-md 数据统计
               li
                 a.ajax-link(href='#sf4',data-toggle="tab")
-                  i.glyphicon.glyphicon-calendar
-                  span  算法3           
-      .col-sm-4
-        input#loadfile.file.form-control(type='file',data-preview-file-type='text')
-      .col-sm-2
-        button.btn.btn-primary(type='button')  calculate
+                  //i.glyphicon.glyphicon-calendar
+                  span  &nbsp Age distribution              
+      .row.col-sm-10
+        .col-sm-2
+          button#calc.btn.btn-primary(type='button')  calculate
+        .col-sm-4
+          input#loadfile.file.form-control(type='file',data-preview-file-type='text')     
+        .col-sm-1
+        #searchUser.col-sm-3.input-group
+          input#userId.form-control(type='text', name='userId')
+          .input-group-btn
+            input#searchId.btn.btn-primary(type='button', name='searchId', value='搜索')         
       hr.line.col-sm-9
       .tab-content.col-sm-10
-        #sf1.tab-pane.in.active
-          h2 test   
-        #sf2.tab-pane
-          h2 test1         
-        #sf3.tab-pane
-          h2 test3
+        #sf0.tab-pane.in.active
+          #userNetwork
+        #sf1.tab-pane
+          #recmovieNetwork
+            
+          #sidepanel
+            #movieInfo.panel_off   
+        // #sf2.tab-pane
+        //   #recmovieNetwork
+            
+        //   #sidepanel
+        //     #movieInfo.panel_off          
+        // #sf3.tab-pane
+        //   #recmovieNetwork
+            
+        //   #sidepanel
+        //     #movieInfo.panel_off  
         #sf4.tab-pane
-          h2 test4   
+          #movieInfos      

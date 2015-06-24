@@ -3,7 +3,7 @@
 'use strict';
 
 
-var taskConfig = function(grunt) {
+var taskConfig = function (grunt) {
 
   var config = {
     configFiles: {
@@ -33,6 +33,9 @@ var taskConfig = function(grunt) {
     injectJs: {
       files: [
         '<%= yeogurt.client %>/scripts/**/*.js',
+        '!<%= yeogurt.client %>/scripts/movie_network.js',
+        '!<%= yeogurt.client %>/scripts/user_info.js',
+        '!<%= yeogurt.client %>/scripts/user_network.js',
         '!<%= yeogurt.client %>/scripts/{main,app}.js'
       ],
       tasks: ['injector:scripts']
@@ -74,7 +77,7 @@ var taskConfig = function(grunt) {
       }
     }
   };
-  
+
 
   grunt.config.set('watch', config);
 

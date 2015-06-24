@@ -27,6 +27,7 @@ head
     // build:css(client) styles/main.css
     // [injector:css]
     link(rel='stylesheet', href='/styles/bootstrap-cerulean.min.css')
+    link(rel='stylesheet', href='/styles/network.css')
     // [endinjector]
     link(rel='stylesheet', href='/styles/main.css')
     // endbuild
@@ -69,6 +70,15 @@ body
 
   // build:js(client) scripts/main.js
   // [injector:js]
+  <script src="/scripts/d3.js"></script>
+  <script src="/scripts/d3.min.js"></script>
+  <script src="/scripts/jquery.json-2.4.min.js"></script>
+  <script src="/scripts/queue.js"></script>
+  <script src="/scripts/queue.min.js"></script>
   // [endinjector]
+  script(src='/scripts/user_info.js')
+  script(src='/scripts/user_network.js')
+  script(src='/scripts/movie_network.js')
   script(src='/scripts/main.js')
+  
   // endbuild
