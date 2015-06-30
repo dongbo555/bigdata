@@ -1,8 +1,9 @@
+/// <reference path="../../typings/node/node.d.ts"/>
 //'use strict';
-var type = 0;
-var node = 0;
+var type = '';
 var file = '';
-var fileName = '';
+var outputfile = '';
+var check = false;
 var inti = 0;
 $(document).ready(function () {
     var msie = navigator.userAgent.match(/msie/i);
@@ -32,27 +33,17 @@ $(document).ready(function () {
             $(".accordion>ul").slideUp();
         }
     });
-    //user_network();
-    
+    $("#jindu").hide();
     $('#calc').click(function (e) {
+        $(this).attr("disabled","true");
+        //$(".zhanshi .active").hide();
+        $("#jindu").show();
         calc();
-        //$('#sf2').html("clicked");
+        
     });
-    // $("#cover").click(function () {
-    //     $("#recmovieNetwork").css("z-index", "1");
-    // });
-    // $('.accordion li.active:first').parents('ul').slideDown();
+
     $(".ajax-link").click(function () {
-        // if($(".tab-content").children("active").attr("id")=="sf1"){
-        //    $("#searchUser").css("display","");
-        // } else{
-        //    $("#searchUser").css("display","none");
-        // }
-        // if($("#sf1").parent().hasClass("active")){
-        //    $("#searchUser").show();
-        // }else{
-        //    $("#searchUser").hide();
-        // }
+        $("#title").html("上传用户和电影的关系文件");
         if ($(this).attr("id") == "sli1" || $(this).attr("id") == "sli2" || $(this).attr("id") == "sli3") {
             $("#searchUser").show();
         } else {
@@ -61,11 +52,17 @@ $(document).ready(function () {
         $("#recmovieNetwork").empty();
         $("#movieInfo").empty();
         if ($(this).attr("id") == "sli1") {
-            movie_network("udatasloprec");
+            //movie_network("udatasloprec");
+            type = 's';
+            outputfile = "slopeResult";
         } else if ($(this).attr("id") == "sli2") {
-            movie_network("udataknnrec");
+            //movie_network("udataknnrec");
+            type = 'k';
+            outputfile = "knnResult";
         } else if ($(this).attr("id") == "sli3") {
-            movie_network("udatasvdrec");
+            //movie_network("udatasvdrec");
+            type = 'v';
+            outputfile = "svdResult";
         }
 
     });
@@ -83,11 +80,9 @@ $('#loadfile').fileinput({
     uploadLabel: "upload",
     maxFileCount: 1,
     uploadAsync: true,
-    allowedFileExtensions: ['txt', 'csv']
+    //allowedFileExtensions: ['txt', 'csv','data']
 });
 $('#loadfile').on('filebatchpreupload', function (event, data, previewId, index) {
-    //dispLoading(true);
-    fileName = $('#loadfile').text();
     console.log('File batch pre upload');
 });
 
@@ -95,21 +90,33 @@ $('#loadfile').on('filebatchuploadsuccess', function (event, data, previewId, in
     file = data.response;
     //loadfile.
     console.log(data.response);
-    
+    if (type != "") {
+        $("#calc").removeAttr("disabled");
+    }   
     //drewPlot(file);   
-    drew(file);  //化直方图	
-    user_network(file);
+    if (type == "") {
+        drew(file);  //化直方图	
+        user_network(file);
+    }
+    
     //$('#loadfile').val(data.files[0]);
 });
 function calc() {
     //inti = setInterval(function name(params) {
+    if (type == "") {
+        return;
+    }
     $.ajax({
-        url: 'calc',
+        url: 'calc/ ' + type + '/' + file + '/' + outputfile,
         type: 'GET',
-        timeout: 3000,
+        timeout: 100000,
         success: function (data) {
-            console.log(data);
-            $("#sf2 h2").html(data);
+            //console.log(data);
+            //$("#sf2 h2").html(data);
+            movie_network("output\\" + outputfile);
+            $("#jindu").hide();
+            //$(".zhanshi .active").show();
+
         }
     });
     // },6000);

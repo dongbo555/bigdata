@@ -1,3 +1,4 @@
+/// <reference path="../../typings/node/node.d.ts"/>
 /**
  * User Routes
  */
@@ -6,7 +7,7 @@
 
 var indexController = require('../controllers/index');
 var multer = require('multer');
-var path = require('path');
+//var path = require('path');
 var fs = require('fs');
 var exec = require('child_process').exec;
 var done = false;
@@ -56,25 +57,35 @@ var routes = function (app) {
         });
     });
 
-    app.get('/calc', function (req, res) {
-        var last = exec('server\\libs\\test',
+    app.get('/calc/:type/:inputfile/:outputfile', function (req, res) {
+        var type = req.params.type;
+        var inputfile = req.params.inputfile;
+        var outputfile = req.params.outputfile;
+        var result;
+        // var last = exec('server\\libs\\RecommendSystem.exe ' +type+' client\\uploads\\'+inputfile+' ..\\..\\client\\output\\'+outputfile+".csv",
+        //     function (error, stdout, stderr) {
+        //         result=stdout;
+        //         result=error;
+        //     });
+        var last = exec('server\\libs\\RecommendSystem.exe ' +type+' client\\uploads\\'+inputfile+".data"+' client\\output\\'+outputfile+".csv",
             function (error, stdout, stderr) {
-                console.log(error);
-                console.log(stdout);
-                console.log(stderr);
+                result=stdout;
+                //result=error;
             });
-        var finalLine = "";
         last.stdout.on('data', function (data) {
-            finalLine += data;
-            data = "test";
-            console.log("data:" + data);
+
+            result=data;
         });
+        // last.stderr.on('data',function (data) {
+        //     result=data;
+        // });
         last.on('exit', function () {
             
             //while(flag){}
-            res.send(finalLine);
+            res.send(result);
         });
-        res.send("get success");
+        
+        //res.send("get success");
     });
 
     app.post('/upload', function (req, res) {
@@ -120,53 +131,53 @@ var routes = function (app) {
 };
 
 
-function convert2Json(text) {
-    var lines = text.split('\n');
-    var nodes = lines[0].split(" ");
+// function convert2Json(text) {
+//     var lines = text.split('\n');
+//     var nodes = lines[0].split(" ");
 
-    var vets = lines[1].split(" ");
+//     var vets = lines[1].split(" ");
 
 
-    var sigData = {
-        nodes: [],
-        edges: []
-    };
-    var resultData = {
-        graph: sigData,
-        data: []
-    };
-    for (var i = 0; i < nodes.length - 1; i++) {
-        var node = nodes[i].split(':');
-        var sigNode = {
-            id: node[0],
-            label: node[1],
-            x: node[2],
-            y: node[3],
-            size: node[4],
-            color: node[5]
-        };
-        sigData.nodes.push(sigNode);
-    }
+//     var sigData = {
+//         nodes: [],
+//         edges: []
+//     };
+//     var resultData = {
+//         graph: sigData,
+//         data: []
+//     };
+//     for (var i = 0; i < nodes.length - 1; i++) {
+//         var node = nodes[i].split(':');
+//         var sigNode = {
+//             id: node[0],
+//             label: node[1],
+//             x: node[2],
+//             y: node[3],
+//             size: node[4],
+//             color: node[5]
+//         };
+//         sigData.nodes.push(sigNode);
+//     }
 
-    for (var j = 0; j < vets.length - 1; j++) {
-        var edge = vets[j].split(':');
-        var sigEdge = {
-            id: edge[0],
-            source: edge[1],
-            target: edge[2],
-            color: edge[3]
-        };
-        sigData.edges.push(sigEdge);
-    }
+//     for (var j = 0; j < vets.length - 1; j++) {
+//         var edge = vets[j].split(':');
+//         var sigEdge = {
+//             id: edge[0],
+//             source: edge[1],
+//             target: edge[2],
+//             color: edge[3]
+//         };
+//         sigData.edges.push(sigEdge);
+//     }
 
-    if (lines.length > 2) {
-        var coms = lines[2].split(" ");
-        for (var k = 0; k < coms.length - 1; k++) {
-            resultData.data.push(coms[k]);
+//     if (lines.length > 2) {
+//         var coms = lines[2].split(" ");
+//         for (var k = 0; k < coms.length - 1; k++) {
+//             resultData.data.push(coms[k]);
 
-        }
-    }
+//         }
+//     }
 
-    return resultData;
-}
-module.exports = routes;
+//     return resultData;
+// }
+ module.exports = routes;

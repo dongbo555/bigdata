@@ -14,9 +14,9 @@ block content
         a.navbar-brand.center-block(href='index.html')
           span 大数据处理
   .ch-container
-    .row
+    div
       // left menu starts
-      .col-sm-2.col-lg-2
+      .col-sm-2.col-lg-2#daohang
         .sidebar-nav
           .nav-canvas
             ul.nav.nav-pills.nav-stacked.main-menu
@@ -40,33 +40,27 @@ block content
                   //i.glyphicon.glyphicon-calendar
                   span  &nbsp Age distribution              
       .row.col-sm-10
-        .col-sm-2
-          button#calc.btn.btn-primary(type='button')  calculate
+        h3#title 请上传用户文件
+        hr.col-sm-12#divider
         .col-sm-4
           input#loadfile.file.form-control(type='file',data-preview-file-type='text')     
+        .col-sm-2.col-sm-offset-1
+          button#calc.btn.btn-primary(type='button',disabled="true")  calculate
         .col-sm-1
         #searchUser.col-sm-3.input-group
           input#userId.form-control(type='text', name='userId')
           .input-group-btn
-            input#searchId.btn.btn-primary(type='button', name='searchId', value='搜索')         
-      hr.line.col-sm-9
+            input#searchId.btn.btn-primary(type='button', name='searchId', value='搜索')   
+        hr.col-sm-12                
       .tab-content.col-sm-10
-        #sf0.tab-pane.in.active
+        #sf0.tab-pane.in.active.zhanshi
           #userNetwork
-        #sf1.tab-pane
-          #recmovieNetwork
-            
+        #sf1.tab-pane.zhanshi
+          #recmovieNetwork           
           #sidepanel
-            #movieInfo.panel_off   
-        // #sf2.tab-pane
-        //   #recmovieNetwork
-            
-        //   #sidepanel
-        //     #movieInfo.panel_off          
-        // #sf3.tab-pane
-        //   #recmovieNetwork
-            
-        //   #sidepanel
-        //     #movieInfo.panel_off  
-        #sf4.tab-pane
-          #movieInfos      
+            #movieInfo.panel_off    
+        #sf4.tab-pane.zhanshi
+          #movieInfos 
+        #jindu.tab-pane.col-sm-offset-2
+          h4.col-sm-offset-3 正在计算，请稍等...
+          img#loading-img.col-sm-offset-2(src='images/loading.gif',width='320px',height='240px')  

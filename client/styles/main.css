@@ -1,7 +1,8 @@
 /* Main Stylesheet */
 
-
-
+body{
+  background-color: #fefeff;
+}
 /* Styling on warning for users on IE7 or below */
 .ch-container {
   padding: 0 15px;
@@ -78,7 +79,19 @@ ul.main-menu li:not(.nav-header) {
 .main-menu .nav-header {
     color: white;
 }
-
+#daohang{
+  margin-top: 15px;
+}
+/*#loading-img{
+  margin-top: 50px;
+}*/
+#jindu{
+  padding-top: 120px;
+}
+#jindu , #zhanshi{
+  padding-bottom: 10px;
+  background-color: #fefeff;
+}
 /*ul.main-menu li:hover {
   margin-left: inherit;
 }
@@ -86,7 +99,14 @@ ul.main-menu li:not(.nav-header) {
 ul.main-menu li.active {
   margin-left: inherit;
 }*/
-
+#title{
+  padding-left: 15px;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+#divider{
+  margin-top: 10px;
+}
 ul.main-menu a:hover, .nav-sm a:hover {
   /*background: none !important;*/
   color: grey;
